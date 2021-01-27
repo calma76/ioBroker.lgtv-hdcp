@@ -24,33 +24,73 @@ if (module && module.parent) {
 } 
 
 var commands = {
-	"3Dmode": 400,
-	"turnOff": 1,
-	"back": 23,
-	"volumeUp": 24,
-	"volumeDown": 25,
+	"turnOff": 8,
+	"back": 40,
+	"volumeUp": 2,
+	"volumeDown": 3,
 	"mute": 26,
-	"channelUp": 27,
-	"channelDown": 28,
-	"input": 47,
-	"number0": 2,
-	"number1": 3,
-	"number2": 4,
-	"number3": 5,
-	"number4": 6,
-	"number5": 7,
-	"number6": 8,
-	"number7": 9,
-	"number8": 10,
-	"number9": 11,
-	"ok": 20,
-	"up": 12,
-	"down": 13,
-	"left": 14,
-	"right": 15,
-	"play": 33,
-	"pause": 34,
-	"stop": 35
+	"channelUp": 0,
+	"channelDown": 1,
+	"channelBack": 26,
+	"input": 11,
+	"number0": 16,
+	"number1": 17,
+	"number2": 18,
+	"number3": 19,
+	"number4": 20,
+	"number5": 21,
+	"number6": 22,
+	"number7": 23,
+	"number8": 24,
+	"number9": 25,
+	"underscore": 76,
+	"ok": 68,
+	"up": 64,
+	"down": 65,
+	"left": 7,
+	"right": 6,
+	"play": 176,
+	"pause": 186,
+	"fast_forward": 142,
+	"rewind": 143,
+	"stop": 177,
+	"record": 189,
+	"status_bar": 35,
+	"quick_menu": 69,
+	"home_menu": 67,
+	"premium_menu": 89,
+	"installation_menu": 207,
+	"factory_advanced_menu1": 251,
+	"factory_advanced_menu2": 255,
+	"sleep_timer": 14,
+	"exit": 91,
+	"red": 114,
+	"green": 113,
+	"yellow": 99,
+	"blue": 97,
+	"tv_radio": 15,
+	"simplink": 126,
+	"component_rgb_hdmi": 152,
+	"component": 191,
+	"rgb": 213,
+	"hdmi": 198,
+	"hdmi1": 206,
+	"hdmi2": 204,
+	"hdmi3": 233,
+	"hdmi4": 218,
+	"av1": 90,
+	"av2": 208,
+	"av3": 209,
+	"usb": 124,
+	"slideshow_usb1": 238,
+	"slideshow_usb2": 168,
+	"favorites": 30,
+	"teletext": 32,
+	"t_opt": 33,
+	"greyed_out_add_button": 85,
+	"guide": 169,
+	"info": 170,
+	"live_tv": 158
 }
 
 function RequestPairingKey(ip, port) 
@@ -63,7 +103,7 @@ function RequestPairingKey(ip, port)
 	var options = {
 		hostname : adapter.config.ip,
 		port : 8080,
-		path : '/roap/api/auth',
+		path : '/hdcp/api/auth',
 		method : 'POST'
 	};
 
@@ -80,7 +120,7 @@ function RequestPairingKey(ip, port)
 		adapter.log.error('Request Error: ' + error);
 	});
 	
-	req.setHeader('Content-Type', 'text/xml; charset=utf-8');
+	req.setHeader('Content-Type', 'application/atom+xml');
 	req.end(message_request);
 }
 
@@ -95,7 +135,7 @@ function RequestSessionKey(pairingKey, callback)
 	var options = {
 		hostname : adapter.config.ip,
 		port : 8080,
-		path : '/roap/api/auth',
+		path : '/hdcp/api/auth',
 		method : 'POST'
 	};
 
@@ -122,7 +162,7 @@ function RequestSessionKey(pairingKey, callback)
 		adapter.log.error('Error: on RequestSessionKey ' + error);
 	});
 
-	req.setHeader('Content-Type', 'text/xml; charset=utf-8');
+	req.setHeader('Content-Type', 'application/atom+xml');
 	req.end(message_request);
 }
 
@@ -137,7 +177,7 @@ function RequestCommand(sessionID, commandKey)
 	var options = {
 		hostname : adapter.config.ip,
 		port : 8080,
-		path : '/roap/api/command',
+		path : '/hdcp/api/dtv_wifirc',
 		method : 'POST'
 	};
 
@@ -154,14 +194,14 @@ function RequestCommand(sessionID, commandKey)
 		adapter.log.error('Error RequestCommand: ' + error);
 	});
 	
-	req.setHeader('Content-Type', 'text/xml; charset=utf-8');
+	req.setHeader('Content-Type', 'application/atom+xml');
 	req.end(message_request);
 }
 
 function startAdapter(options) {
     options = options || {};
     Object.assign(options,{
-        name:  "lgtv11",
+        name:  "lgtv-hdcp",
         stateChange:  function (id, state) {
             if (id && state && !state.ack)
 			{
@@ -191,24 +231,24 @@ function startAdapter(options) {
 
     adapter = new utils.Adapter(options);
 
-    adapter.on('message', function (obj)
-    {
-            adapter.log.debug('Incoming Adapter message: ' + obj.command);
-        switch (obj.command)
-            {
-            case 'RequestPairingKey_Msg':
-                if (!obj.callback) return false;
-                            RequestPairingKey(adapter.config.ip, adapter.config.port);
-                    return true;
-
-            default:
-                adapter.log.warn("Unknown command: " + obj.command);
-                    break;
-        }
-    });
-
     return adapter;
 }
+
+adapter.on('message', function (obj) 
+{
+	adapter.log.debug('Incoming Adapter message: ' + obj.command);
+    switch (obj.command) 
+	{
+        case 'RequestPairingKey_Msg':
+            if (!obj.callback) return false;
+			RequestPairingKey(adapter.config.ip, adapter.config.port);
+		return true;
+		
+        default:
+            adapter.log.warn("Unknown command: " + obj.command);
+		break;
+    }
+});
 
 function main() 
 {
