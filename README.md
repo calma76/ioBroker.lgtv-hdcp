@@ -1,23 +1,17 @@
 ![Logo](admin/lgtv2011.png)
-# ioBroker.lgtv11
+# ioBroker.lgtv-hdcp
 =================
 
-![Number of Installations](http://iobroker.live/badges/lgtv11-installed.svg) ![Number of Installations](http://iobroker.live/badges/lgtv11-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.lgtv11.svg)](https://www.npmjs.com/package/iobroker.lgtv11)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.lgtv11.svg)](https://www.npmjs.com/package/iobroker.lgtv11)
 
-[![NPM](https://nodei.co/npm/iobroker.lgtv11.png?downloads=true)](https://nodei.co/npm/iobroker.lgtv11/)
+LG SmartTV adapter for ioBroker
 
-**Tests:** Linux/Mac: [![Travis-CI](https://travis-ci.org/SebastianSchultz/ioBroker.lgtv11.svg?branch=master)](https://travis-ci.org/SebastianSchultz/ioBroker.lgtv11)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/fwlpfd33mafbivcm/branch/master?svg=true)](https://ci.appveyor.com/project/SebastianSchultz/iobroker-lgtv11/branch/master)
+Remote controlling an LG SmartTV (2011 models with HDCP API).
 
+Merged from the following projects:
 
-
-
-
-
-LG WebOS SmartTV adapter for ioBroker
-
-Remote controlling an LG WebOS SmartTV (2011 models up to WebOS) from [ioBroker](https://www.iobroker.net).
+https://github.com/ubaransel/lgcommander
+https://github.com/SebastianSchultz/ioBroker.lgtv11
+https://github.com/dreamcat4/lgremote
 
 
 ---
@@ -26,9 +20,9 @@ Remote controlling an LG WebOS SmartTV (2011 models up to WebOS) from [ioBroker]
 ## Usage:
 
 
-1.) Install the adapter through ioBroker admin interface.
+1.) Download the adapter from Github.
 
-2.) In the adapter config input the ip adress of your LG WebOS TV.
+2.) In the adapter config input the ip adress of your LG TV.
 
 3.) Start the adapter
 
@@ -104,23 +98,8 @@ Open the input list to switch to.
 
 ## Changelog
 
-### 1.0.5 (2019-01-21)
-* (SebastianSchultz) Added compact mode
-
-### 1.0.4 (2018-05-08)
-* (SebastianSchultz) Added "back" command/state
-
-### 1.0.3 (2018-04-27)
-* (SebastianSchultz) Fixed a bug in Admin interface that no pairing key could be requested
-
-### 1.0.2 (2018-04-18)
-* (SebastianSchultz) Renamed from ioBroker.lgtv2011 to ioBroker.lgtv11
-
-### 1.0.1 (2018-04-17)
-* (SebastianSchultz) Code clean up
-
-### 1.0.0 (2018-04-15)
-* (SebastianSchultz) Initial Release
+### 1.0.0 (2021-01-27)
+* (calma76) Forked from ioBroker.lgtv11 and renamed to ioBroker.lgtv-hdcp
 
 
 ---
