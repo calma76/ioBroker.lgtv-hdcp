@@ -1,10 +1,10 @@
 {
   "author": {
-    "name": "Sebastian Schultz",
-    "email": "mail@sebastian-schultz.de"
+    "name": "calma76",
+    "email": "calma1976@gmail.com"
   },
   "bugs": {
-    "url": "https://github.com/SebastianSchultz/iobroker.lgtv11/issues"
+    "url": "https://github.com/calma76/ioBroker.lgtv-hdcp/issues"
   },
   "bundleDependencies": false,
   "contributors": [],
@@ -13,7 +13,7 @@
     "@iobroker/adapter-core": "^1.0.3"
   },
   "deprecated": false,
-  "description": "ioBroker LG 11 SmartTV Adapter",
+  "description": "ioBroker LGTV HDCP API SmartTV Adapter",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.1.0",
@@ -29,14 +29,11 @@
     "@iobroker/testing": "^1.1.10"
   },
   "directories": {},
-  "dist": {
-    "shasum": "52d9bfcc96e56fbd4b7023c5722ec4b5f0c40871",
-    "tarball": "https://registry.npmjs.org/iobroker.lgtv11/-/iobroker.lgtv11-1.0.5.tgz"
-  },
-  "homepage": "https://github.com/SebastianSchultz/iobroker.lgtv11",
+  "homepage": "https://github.com/calma76/ioBroker.lgtv-hdcp",
   "keywords": [
     "ioBroker",
     "lgtv",
+    "hdcp"
     "Smart Home",
     "home automation"
   ],
@@ -44,15 +41,15 @@
   "main": "main.js",
   "maintainers": [
     {
-      "name": "Sebastian Schultz",
-      "email": "mail@sebastian-schultz.de"
+      "name": "calma76",
+      "email": "calma1976@gmail.com"
     }
   ],
-  "name": "iobroker.lgtv11",
+  "name": "iobroker.lgtv-hdcp",
   "optionalDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SebastianSchultz/ioBroker.lgtv11.git"
+    "url": "git+https://github.com/calma76/ioBroker.lgtv-hdcp.git"
   },
   "scripts": {
     "test": "npm run test:package && npm run test:unit",
@@ -60,5 +57,5 @@
     "test:unit": "mocha test/unit --exit",
     "test:integration": "mocha test/integration --exit"
   },
-  "version": "1.0.5"
+  "version": "1.0.0"
 }
