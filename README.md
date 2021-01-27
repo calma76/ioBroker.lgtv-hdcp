@@ -10,7 +10,9 @@ Remote controlling an LG SmartTV (2011 models with HDCP API).
 Merged from the following projects:
 
 https://github.com/ubaransel/lgcommander
+
 https://github.com/SebastianSchultz/ioBroker.lgtv11
+
 https://github.com/dreamcat4/lgremote
 
 
