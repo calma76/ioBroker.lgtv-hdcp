@@ -35,14 +35,14 @@ module.exports = function (grunt) {
         if (fs.existsSync(__dirname + '/admin/lgtv2011.png')) {
             fs.renameSync(__dirname + '/admin/lgtv2011.png',              __dirname + '/admin/' + newname + '.png');
         }
-        if (fs.existsSync(__dirname + '/widgets/lgtv2011.html')) {
-            fs.renameSync(__dirname + '/widgets/lgtv2011.html',           __dirname + '/widgets/' + newname + '.html');
+        if (fs.existsSync(__dirname + '/widgets/lgtv-hdcp.html')) {
+            fs.renameSync(__dirname + '/widgets/lgtv-hdcp.html',           __dirname + '/widgets/' + newname + '.html');
         }
-        if (fs.existsSync(__dirname + '/widgets/lgtv2011/js/lgtv2011.js')) {
-            fs.renameSync(__dirname + '/widgets/lgtv2011/js/lgtv2011.js', __dirname + '/widgets/lgtv2011/js/' + newname + '.js');
+        if (fs.existsSync(__dirname + '/widgets/lgtv-hdcp/js/lgtv-hdcp.js')) {
+            fs.renameSync(__dirname + '/widgets/lgtv-hdcp/js/lgtv-hdcp.js', __dirname + '/widgets/lgtv-hdcp/js/' + newname + '.js');
         }
-        if (fs.existsSync(__dirname + '/widgets/lgtv2011')) {
-            fs.renameSync(__dirname + '/widgets/lgtv2011',                __dirname + '/widgets/' + newname);
+        if (fs.existsSync(__dirname + '/widgets/lgtv-hdcp')) {
+            fs.renameSync(__dirname + '/widgets/lgtv-hdcp',                __dirname + '/widgets/' + newname);
         }
     }
 
