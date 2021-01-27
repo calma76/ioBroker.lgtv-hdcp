@@ -1,9 +1,9 @@
 {
     "common": {
-        "name":                     "lgtv11",
-        "version":                  "1.0.5",
+        "name":                     "lgtv-hdcp",
+        "version":                  "1.0.0",
  "news": {
-            "1.0.1": {
+            "1.0.0": {
                 "en": "Added Compact mode",
                 "de": "Compact Mode hinzugefügt",
                 "ru": "Added Compact mode",
@@ -15,12 +15,13 @@
         "title":                    "LG 2011 SmartTV",
         "desc":                     
 		{
- 			             "en": "Controls 2011 LG SmartTVs",
- 			             "de": "Steuert LG SmartTV Modelle vor 2012",
- 			             "ru": "Controls 2011  SmartTVs"
+ 			             "en": "Controls 2011 LG SmartTVs with HDPC API",
+ 			             "de": "Steuert LG SmartTV Modelle vor 2012 mit HDPC API",
+ 			             "ru": "Controls 2011  SmartTVs with HDPC API"
 	    },
 		"authors": [
-            "SebastianSchultz <mail@sebastian-schultz.de>"
+            "SebastianSchultz <mail@sebastian-schultz.de>",
+            "calma76 <calma1976@gmail.com>"
 		],			
 	    "license":                "MIT",
         "platform":                 "Javascript/Node.js",
@@ -28,7 +29,7 @@
         "icon":                     "lgtv2011.png",
         "enabled":                  false,
 	    "extIcon":                  "https://raw.githubusercontent.com/SMundt/ioBroker.lgtv2011/master/admin/lgtv2011.png",
-	    "keywords":                 ["lgtv", "2011", "Smart", "TV", "LG"],
+	    "keywords":                 ["lgtv", "2011", "Smart", "TV", "LG", "HDPC"],
         "readme":                   "https://github.com/SMundt/iobroker.lgtv2011/blob/master/README.md",
 	    "loglevel":                 "info",
         "messagebox":               true,
@@ -48,10 +49,108 @@
     ],
     "instanceObjects": [
       {
-        "_id":  "3Dmode",
+        "_id": "menus",
+        "type": "channel",
+        "common": {
+          "name": "Menus"
+        }
+      },
+      {
+        "_id":  "menus.status_bar",
         "type": "state",
         "common": {
-          "name": "Toggle 3D mode",
+          "name": "Status Bar",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "menus.quick_menu",
+        "type": "state",
+        "common": {
+          "name": "Quick Menu",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "menus.home_menu",
+        "type": "state",
+        "common": {
+          "name": "Home Menu",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "menus.premium_menu",
+        "type": "state",
+        "common": {
+          "name": "Premium Menu",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "menus.installation_menu",
+        "type": "state",
+        "common": {
+          "name": "Installation Menu",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "menus.factory_advanced_menu1",
+        "type": "state",
+        "common": {
+          "name": "Factory Advance Menu 1",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "menus.factory_advanced_menu2",
+        "type": "state",
+        "common": {
+          "name": "Factory Advance Menu 2",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id": "power_controls",
+        "type": "channel",
+        "common": {
+          "name": "Power Controls"
+        }
+      },
+      {
+        "_id":  "power_controls.turnOff",
+        "type": "state",
+        "common": {
+          "name": "Switch TV Off",
           "role": "button",
           "type": "boolean",
           "read": false,
@@ -60,10 +159,10 @@
         "native": {}
       },
       {
-        "_id":  "back",
+        "_id":  "power_controls.sleep_timer",
         "type": "state",
         "common": {
-          "name": "Toggle back",
+          "name": "Sleep Timer",
           "role": "button",
           "type": "boolean",
           "read": false,
@@ -72,223 +171,14 @@
         "native": {}
       },  
       {
-        "_id":  "turnOff",
-        "type": "state",
+        "_id": "navigation",
+        "type": "channel",
         "common": {
-          "name": "Switch TV OFF",
-          "role": "button",
-          "type": "boolean",
-          "read": false,
-          "write": true
-        },
-        "native": {}
+          "name": "Navigation"
+        }
       },
       {
-        "_id":  "mute",
-        "type": "state",
-        "common": {
-          "name": "Mute ON/OFF",
-          "role": "button",
-          "type": "boolean",
-          "read": false,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "volumeUp",
-        "type": "state",
-        "common": {
-          "name": "Volume UP",
-          "role": "button",
-          "type": "boolean",
-          "read": false,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "volumeDown",
-        "type": "state",
-        "common": {
-          "name": "Volume DOWN",
-          "role": "button",
-          "type": "boolean",
-          "read": false,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "channelUp",
-        "type": "state",
-        "common": {
-          "name": "Channel UP",
-          "role": "button",
-          "type": "boolean",
-          "read": false,
-		  "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "channelDown",
-        "type": "state",
-        "common": {
-          "name": "Channel DOWN",
-          "role": "button",
-          "type": "boolean",
-          "read": false,
-		  "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "input",
-        "type": "state",
-        "common": {
-          "name": "Switch input source",
-          "role": "button",
-          "type": "boolean",
-          "read": true,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "number0",
-        "type": "state",
-        "common": {
-          "name": "Number 0",
-          "role": "button",
-          "type": "boolean",
-          "read": true,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "number1",
-        "type": "state",
-        "common": {
-          "name": "Number 1",
-          "role": "button",
-          "type": "boolean",
-          "read": true,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "number2",
-        "type": "state",
-        "common": {
-          "name": "Number 2",
-          "role": "button",
-          "type": "boolean",
-          "read": true,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "number3",
-        "type": "state",
-        "common": {
-          "name": "Number 3",
-          "role": "button",
-          "type": "boolean",
-          "read": true,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "number4",
-        "type": "state",
-        "common": {
-          "name": "Number 4",
-          "role": "button",
-          "type": "boolean",
-          "read": true,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "number5",
-        "type": "state",
-        "common": {
-          "name": "Number 5",
-          "role": "button",
-          "type": "boolean",
-          "read": true,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "number6",
-        "type": "state",
-        "common": {
-          "name": "Number 6",
-          "role": "button",
-          "type": "boolean",
-          "read": true,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "number7",
-        "type": "state",
-        "common": {
-          "name": "Number 7",
-          "role": "button",
-          "type": "boolean",
-          "read": true,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "number8",
-        "type": "state",
-        "common": {
-          "name": "Number 8",
-          "role": "button",
-          "type": "boolean",
-          "read": true,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "number9",
-        "type": "state",
-        "common": {
-          "name": "Number 9",
-          "role": "button",
-          "type": "boolean",
-          "read": true,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "ok",
-        "type": "state",
-        "common": {
-          "name": "OK",
-          "role": "button",
-          "type": "boolean",
-          "read": true,
-          "write": true
-        },
-        "native": {}
-      },
-      {
-        "_id":  "up",
+        "_id":  "navigation.up",
         "type": "state",
         "common": {
           "name": "Up",
@@ -300,7 +190,7 @@
         "native": {}
       },
       {
-        "_id":  "down",
+        "_id":  "navigation.down",
         "type": "state",
         "common": {
           "name": "Down",
@@ -312,7 +202,7 @@
         "native": {}
       },
       {
-        "_id":  "left",
+        "_id":  "navigation.left",
         "type": "state",
         "common": {
           "name": "Left",
@@ -324,7 +214,7 @@
         "native": {}
       },
       {
-        "_id":  "right",
+        "_id":  "navigation.right",
         "type": "state",
         "common": {
           "name": "Right",
@@ -336,7 +226,237 @@
         "native": {}
       },
       {
-        "_id":  "play",
+        "_id":  "navigation.ok",
+        "type": "state",
+        "common": {
+          "name": "OK",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "navigation.back",
+        "type": "state",
+        "common": {
+          "name": "Toggle back",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "navigation.exit",
+        "type": "state",
+        "common": {
+          "name": "Exit",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "navigation.red",
+        "type": "state",
+        "common": {
+          "name": "Red Button",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "navigation.green",
+        "type": "state",
+        "common": {
+          "name": "Green Button",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "navigation.yellow",
+        "type": "state",
+        "common": {
+          "name": "Yellow Button",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "navigation.blue",
+        "type": "state",
+        "common": {
+          "name": "Blue Button",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id": "keypad",
+        "type": "channel",
+        "common": {
+          "name": "Keypad"
+        }
+      },
+      {
+        "_id":  "keypad.number0",
+        "type": "state",
+        "common": {
+          "name": "Number 0",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "keypad.number1",
+        "type": "state",
+        "common": {
+          "name": "Number 1",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "keypad.number2",
+        "type": "state",
+        "common": {
+          "name": "Number 2",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "keypad.number3",
+        "type": "state",
+        "common": {
+          "name": "Number 3",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "keypad.number4",
+        "type": "state",
+        "common": {
+          "name": "Number 4",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "keypad.number5",
+        "type": "state",
+        "common": {
+          "name": "Number 5",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "keypad.number6",
+        "type": "state",
+        "common": {
+          "name": "Number 6",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "keypad.number7",
+        "type": "state",
+        "common": {
+          "name": "Number 7",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "keypad.number8",
+        "type": "state",
+        "common": {
+          "name": "Number 8",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "keypad.number9",
+        "type": "state",
+        "common": {
+          "name": "Number 9",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "keypad.underscore",
+        "type": "state",
+        "common": {
+          "name": "Underscore",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id": "playback_controls",
+        "type": "channel",
+        "common": {
+          "name": "Playback Controls"
+        }
+      },
+      {
+        "_id":  "playback_controls.play",
         "type": "state",
         "common": {
           "name": "Play",
@@ -348,7 +468,7 @@
         "native": {}
       },
       {
-        "_id":  "pause",
+        "_id":  "playback_controls.pause",
         "type": "state",
         "common": {
           "name": "Pause",
@@ -360,10 +480,590 @@
         "native": {}
       },
       {
-        "_id":  "stop",
+        "_id":  "playback_controls.fast_forward",
+        "type": "state",
+        "common": {
+          "name": "Fast Forward",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "playback_controls.rewind",
+        "type": "state",
+        "common": {
+          "name": "Rewind",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "playback_controls.stop",
         "type": "state",
         "common": {
           "name": "Stop",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "playback_controls.record",
+        "type": "state",
+        "common": {
+          "name": "Record",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id": "input_controls",
+        "type": "channel",
+        "common": {
+          "name": "Input Controls"
+        }
+      },
+      {
+        "_id":  "input_controls.tv_radoi",
+        "type": "state",
+        "common": {
+          "name": "TV - Radio",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.simplink",
+        "type": "state",
+        "common": {
+          "name": "Simplink",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.component_rgb_hdmi",
+        "type": "state",
+        "common": {
+          "name": "Component RGB HDMI",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.component",
+        "type": "state",
+        "common": {
+          "name": "Component",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.rgb",
+        "type": "state",
+        "common": {
+          "name": "RGB",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.hdmi",
+        "type": "state",
+        "common": {
+          "name": "HDMI",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.hdmi1",
+        "type": "state",
+        "common": {
+          "name": "HDMI 1",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.hdmi2",
+        "type": "state",
+        "common": {
+          "name": "HDMI 2",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.hdmi3",
+        "type": "state",
+        "common": {
+          "name": "HDMI 3",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.hdmi4",
+        "type": "state",
+        "common": {
+          "name": "HDMI 4",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.av1",
+        "type": "state",
+        "common": {
+          "name": "AV 1",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.av2",
+        "type": "state",
+        "common": {
+          "name": "AV 2",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.av3",
+        "type": "state",
+        "common": {
+          "name": "AV 3",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.usb",
+        "type": "state",
+        "common": {
+          "name": "USB",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.slideshow_usb1",
+        "type": "state",
+        "common": {
+          "name": "Slideshow USB 1",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "input_controls.slideshow_usb2",
+        "type": "state",
+        "common": {
+          "name": "Slideshow USB 2",
+          "role": "button",
+          "type": "boolean",
+          "read": true,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id": "tv_controls",
+        "type": "channel",
+        "common": {
+          "name": "TV Controls"
+        }
+      },
+      {
+        "_id":  "tv_controls.channelUp",
+        "type": "state",
+        "common": {
+          "name": "Channel UP",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "tv_controls.channelDown",
+        "type": "state",
+        "common": {
+          "name": "Channel DOWN",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "tv_controls.channelBack",
+        "type": "state",
+        "common": {
+          "name": "Channel Back",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "tv_controls.favorites",
+        "type": "state",
+        "common": {
+          "name": "Favorites",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "tv_controls.teletext",
+        "type": "state",
+        "common": {
+          "name": "Teletext",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "tv_controls.t_opt",
+        "type": "state",
+        "common": {
+          "name": "T OPT",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "tv_controls.channelList",
+        "type": "state",
+        "common": {
+          "name": "Channel List",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "tv_controls.guide",
+        "type": "state",
+        "common": {
+          "name": "Guide",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "tv_controls.info",
+        "type": "state",
+        "common": {
+          "name": "Info",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "tv_controls.live_tv",
+        "type": "state",
+        "common": {
+          "name": "Live TV",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id": "picture_controls",
+        "type": "channel",
+        "common": {
+          "name": "Picture Controls"
+        }
+      },
+      {
+        "_id":  "picture_controls.av_mdoe",
+        "type": "state",
+        "common": {
+          "name": "AV Mode",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "picture_controls.picture_mode",
+        "type": "state",
+        "common": {
+          "name": "Picture Mode",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "picture_controls.ratio",
+        "type": "state",
+        "common": {
+          "name": "Ratio",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "picture_controls.ratio_4_3",
+        "type": "state",
+        "common": {
+          "name": "Ratio 4:3",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "picture_controls.ratio_16_9",
+        "type": "state",
+        "common": {
+          "name": "Ratio 16:9",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "picture_controls.energy_saving",
+        "type": "state",
+        "common": {
+          "name": "Energy Saving",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "picture_controls.cinema_zoom",
+        "type": "state",
+        "common": {
+          "name": "Cinema Zoom",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "picture_controls.3Dmode",
+        "type": "state",
+        "common": {
+          "name": "Toggle 3D Mode",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "picture_controls.factory_picture_check",
+        "type": "state",
+        "common": {
+          "name": "Factory Picture Check",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id": "audio_controls",
+        "type": "channel",
+        "common": {
+          "name": "Audio Controls"
+        }
+      },
+      {
+        "_id":  "audio_controls.mute",
+        "type": "state",
+        "common": {
+          "name": "Mute ON/OFF",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "audio_controls.volumeUp",
+        "type": "state",
+        "common": {
+          "name": "Volume UP",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "audio_controls.volumeDown",
+        "type": "state",
+        "common": {
+          "name": "Volume DOWN",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+          "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "audio_controls.audio_language",
+        "type": "state",
+        "common": {
+          "name": "Audio Language",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "audio_controls.sound_mode",
+        "type": "state",
+        "common": {
+          "name": "Sound Mode",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "audio_controls.factory_sound_check",
+        "type": "state",
+        "common": {
+          "name": "Factory Sound Check",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "audio_controls.subtitle_language",
+        "type": "state",
+        "common": {
+          "name": "Subtitle Language",
+          "role": "button",
+          "type": "boolean",
+          "read": false,
+		  "write": true
+        },
+        "native": {}
+      },
+      {
+        "_id":  "audio_controls.audio_description",
+        "type": "state",
+        "common": {
+          "name": "Audio Description",
           "role": "button",
           "type": "boolean",
           "read": true,
