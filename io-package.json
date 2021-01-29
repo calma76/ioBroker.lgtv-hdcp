@@ -535,7 +535,7 @@
         }
       },
       {
-        "_id":  "input_controls.tv_radoi",
+        "_id":  "input_controls.tv_radio",
         "type": "state",
         "common": {
           "name": "TV - Radio",

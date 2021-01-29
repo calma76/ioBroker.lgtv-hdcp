@@ -36,16 +36,16 @@ var commands = {
 	"power_controls.turnOff": 8,
 	"power_controls.sleep_timer": 14,
 	// Navigation
-	"navidation.left": 7,
-	"navidation.right": 6,
-	"navidation.up": 64,
-	"navidation.down": 65,
-	"navidation.ok": 68,
-	"navidation.back": 40,
-	"navidation.exit": 91,
-	"navidation.red": 114,
-	"navidation.green": 113,
-	"navidation.yellow": 99,
+	"navigation.left": 7,
+	"navigation.right": 6,
+	"navigation.up": 64,
+	"navigation.down": 65,
+	"navigation.ok": 68,
+	"navigation.back": 40,
+	"navigation.exit": 91,
+	"navigation.red": 114,
+	"navigation.green": 113,
+	"navigation.yellow": 99,
 	"navidation.blue": 97,
 	// Keypad
 	"keypad.number0": 16,
@@ -81,7 +81,7 @@ var commands = {
 	"input_controls.av1": 90,
 	"input_controls.av2": 208,
 	"input_controls.av3": 209,
-	"input_controls.usb": 124,
+	"input_controls.usb": 125, // open 124
 	"input_controls.slideshow_usb1": 238,
 	"input_controls.slideshow_usb2": 168,
 	// TV Controls
@@ -108,7 +108,7 @@ var commands = {
 	// Audio Controls
 	"audio_controls.volumeUp": 2,
 	"audio_controls.volumeDown": 3,
-	"audio_controls.mute": 26,
+	"audio_controls.mute": 26, // open 26
 	"audio_controls.audio_language": 10,
 	"audio_controls.sound_mode": 82,
 	"audio_controls.factory_sound_check": 253,
